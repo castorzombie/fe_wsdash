@@ -4,7 +4,7 @@ import { historicalPair } from '../../actions/crypto';
 import { historicalPairMock } from '../../mocks/historicalPairMock';
 import useChart from '../../hooks/useChart';
 
-export default function DashChart({ coin }) {
+export default function DashHistorical({ coin }) {
 
   const dispatch = useDispatch();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import DashChart from './DashChart';
-import DashPrice from './DashPrice';
+import DashHistorical from './DashHistorical';
+import DashRealTime from './DashRealTime';
 import Masonry from '@mui/lab/Masonry';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -29,18 +29,24 @@ const StyledCardContent = styled(CardContent)( () => ({
   padding: '0 0 0px 10px'
 }));
 
+const styleDashBox = {
+  width: 'auto', 
+  minHeight: 'calc(100% - 100px)',
+  padding: '10px 0 0 10px'
+};
+
 function DashData() {
 
   const { coins } = useSelector( state => state.coin );
 
+  const calcColumns = () => {
+    return  coins.length > 2 ? 3 : coins.length;
+  };
+
   return (
-    <Box sx={{ 
-      width: 'auto', 
-      minHeight: 'calc(100% - 100px)',
-      padding: '10px 0 0 10px' 
-      }} >
+    <Box sx={ styleDashBox } >
       <Masonry 
-        columns={ coins.length > 2 ? 3 : coins.length } 
+        columns={ calcColumns() } 
         spacing={ 1 } >
         { coins.map( coin => ( 
           <React.Fragment key={ coin.itemId } >
@@ -49,11 +55,11 @@ function DashData() {
                 <StyledAccordion >
                   <AccordionSummary 
                     expandIcon={<ExpandMoreIcon />}>
-                    <DashPrice coin={ coin } /> 
+                    <DashRealTime coin={ coin } /> 
                   </AccordionSummary>
                   <StyledAccordionDetails>
                     <StyledCardContent>
-                      <DashChart coin={ coin } />
+                      <DashHistorical coin={ coin } />
                     </StyledCardContent>
                   </StyledAccordionDetails>
                 </StyledAccordion>

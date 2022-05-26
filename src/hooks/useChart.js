@@ -12,12 +12,26 @@ const useChart = chartData => {
   const stateHasChanged = useHasChanged( chartData );
 
   useEffect( () => {
-        if( chartData && stateHasChanged ){
-            const ohlc = chartData.map( el => [ el.time*1000, el.open, el.high, el.low, el.close ] );
-            const vol = chartData.map( el => [ el.time*1000, el.volumefrom ] );
-            setOHLC( ohlc );
-            setVolCoin( vol );
-        }
+
+    if( chartData && stateHasChanged ){
+
+      const ohlc = chartData.map( el => [ 
+        el.time*1000, 
+        el.open, 
+        el.high, 
+        el.low, 
+        el.close ] );
+
+      const vol = chartData.map( el => [ 
+        el.time*1000, 
+        el.volumefrom ] );
+
+      setOHLC( ohlc );
+
+      setVolCoin( vol );
+
+    }
+
   },[ chartData, stateHasChanged ] );
 
   const groupingUnits = [[
