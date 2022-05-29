@@ -14,7 +14,7 @@ const useChart = chartData => {
   useEffect( () => {
 
     if( chartData && stateHasChanged ){
-
+      
       const ohlc = chartData.map( el => [ 
         el.time*1000, 
         el.open, 
@@ -48,6 +48,16 @@ const useChart = chartData => {
       constructorType={'stockChart'}
       options={ 
         {
+
+          chart: {
+            events: {
+              load() {
+                setTimeout(
+                 this.reflow.bind(this), 400
+                )
+              },
+            },
+          },
           
           rangeSelector: {
             selected: 1

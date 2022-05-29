@@ -40,7 +40,12 @@ function DashData() {
   const { coins } = useSelector( state => state.coin );
 
   const calcColumns = () => {
-    return  coins.length > 2 ? 3 : coins.length;
+    return {
+      xs : 1, 
+      sm : 1, 
+      md : coins.length > 1 ? 2 : coins.length, 
+      lg : coins.length > 2 ? 3 : coins.length
+    }
   };
 
   return (
@@ -59,7 +64,7 @@ function DashData() {
                   </AccordionSummary>
                   <StyledAccordionDetails>
                     <StyledCardContent>
-                      <DashHistorical coin={ coin } />
+                      <DashHistorical coin={ coin }/>
                     </StyledCardContent>
                   </StyledAccordionDetails>
                 </StyledAccordion>

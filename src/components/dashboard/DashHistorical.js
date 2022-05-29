@@ -12,18 +12,18 @@ export default function DashHistorical({ coin }) {
 
   const [ chartData, setChartData ] = useState( [] );
 
-  const CoinChart = useChart( chartData );
+  const CoinChart = useChart( chartData, coin.name );
 
   useEffect( () => {
-    dispatch(
+   /* dispatch(
       historicalPair( { 
         period: "day", 
         coin: coin.name, 
         quote: quote,
         limit: "500"   
       } )
-    )
-    /*historicalPairMock()*/.then( res => {
+    )*/
+    historicalPairMock().then( res => {
       if( res.Data ){
         setChartData(res.Data.Data);
       }
