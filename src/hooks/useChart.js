@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect, useRef }  from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import useHasChanged from './useHasChanged';
@@ -9,12 +9,14 @@ const useChart = chartData => {
 
   const [ volCoin, setVolCoin ] = useState( [] );
 
+  const chartRef = useRef(null)
+
   const stateHasChanged = useHasChanged( chartData );
 
   useEffect( () => {
 
     if( chartData && stateHasChanged ){
-      
+
       const ohlc = chartData.map( el => [ 
         el.time*1000, 
         el.open, 
@@ -44,6 +46,7 @@ const useChart = chartData => {
 
   const CoinChart = () => (
     <HighchartsReact
+      ref= { chartRef }
       highcharts={Highcharts}
       constructorType={'stockChart'}
       options={ 
@@ -53,7 +56,7 @@ const useChart = chartData => {
             events: {
               load() {
                 setTimeout(
-                 this.reflow.bind(this), 400
+                 this.reflow.bind(this), 600
                 )
               },
             },

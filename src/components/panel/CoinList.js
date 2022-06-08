@@ -62,8 +62,8 @@ const CoinList = ({
 
         if( isFirst.current && exchange !== '' && quote !== '' ) {
             isFirst.current = false;
-            //topListByCap( 20, 'EUR' )         
-            topListByCapMock()
+            topListByCap( 20, 'EUR' )         
+            //topListByCapMock()
             .then( 
                 res => createCoinsList( res.Data ) 
             )
