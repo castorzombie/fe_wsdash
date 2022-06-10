@@ -27,7 +27,7 @@ const CoinList = ({
 
     const [ defaultCoins, setDefaultCoins ] = useState( [] );
 
-    const [ allowWebsocket ] = useState( false );
+    const [ allowWebsocket ] = useState( true );
 
     const [ //allSelected,
             newSelected,
