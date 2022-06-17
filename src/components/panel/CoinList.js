@@ -27,7 +27,7 @@ const CoinList = ({
 
     const [ defaultCoins, setDefaultCoins ] = useState( [] );
 
-    const [ allowWebsocket ] = useState( true );
+    const [ allowWebsocket ] = useState( false );
 
     const [ //allSelected,
             newSelected,
@@ -44,14 +44,18 @@ const CoinList = ({
 
     const createCoinsList = useCallback( data => {
 
-        const extract = data.map( item => (
-            { 
-            itemId: item.CoinInfo.Id, 
-            name: item.CoinInfo.Name, 
-            description: item.CoinInfo.FullName,
-            image: `${cryptocompareURL}${item.CoinInfo.ImageUrl}` 
+        const extract = data.map( item => {
+
+            const { Id, Name, FullName, ImageUrl } = item.CoinInfo;
+
+            return { 
+                itemId: Id, 
+                name: Name, 
+                description: FullName,
+                image: `${cryptocompareURL}${ImageUrl}` 
             }
-        ));
+
+        });
 
         setList( extract ); 
 

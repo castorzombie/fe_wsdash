@@ -31,11 +31,13 @@ export default function DashRealTime({ coin }) {
 
   const CoinVolume = useVolume( coin );
 
+  const { description, image, name } = coin;
+
   const subHeader = () => {
     return(
       <React.Fragment>
         <CoinDesc>
-          {coin.description}
+          {description}
         </CoinDesc>
         <CoinPrice />
         <CoinVolume />
@@ -52,11 +54,11 @@ export default function DashRealTime({ coin }) {
     <CardHeader
       avatar={
         <Avatar
-          alt={ coin.description }
-          src={ coin.image }
+          alt={ description }
+          src={ image }
           sx={{ width: 42, height: 42 }} />
       }
-      title={ coin.name }
+      title={ name }
       subheader={ subHeader() }
     />
   )
