@@ -14,6 +14,12 @@ const PriceDiff = styled('span')(
     fontSize: '16px'
 }));
 
+const PriceWait = styled('span')( 
+  () => ({
+    fontSize: '12px',
+    fontStyle: 'italic'
+}));
+
 
 const usePrice = coin => {
 
@@ -54,11 +60,17 @@ const usePrice = coin => {
 
   const CoinPrice = () => (
       <React.Fragment>
-        {value ? 
+        { value ? 
         <PriceBox >
-          <PriceDiff inc={ buy ? 'green' : 'red' } >{` ${ value } `}</PriceDiff> 
-          {quote} 
-        </PriceBox> : 'Waiting for price ... ' }
+          <PriceDiff 
+            inc={ buy ? 'green' : 'red' }>
+            {` ${ value } `}
+          </PriceDiff> 
+          { quote } 
+        </PriceBox> : 
+        <PriceWait>
+          {` price `}
+        </PriceWait> }
       </React.Fragment>
   );
 
