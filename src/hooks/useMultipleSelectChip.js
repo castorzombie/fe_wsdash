@@ -71,9 +71,7 @@ const MultipleSelectChip = (
 
     const { target: { value } } = event;
 
-    let newer;
-
-    let duplicate;
+    let newer, duplicate;
 
     newer = value.filter( el => !items.find( sub => el.itemId === sub.itemId ) )[0];
 

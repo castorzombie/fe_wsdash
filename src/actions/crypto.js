@@ -49,7 +49,9 @@ export const topListByCap = ( limit, currency ) => async dispatch => {
 };
 
 
-export const dailySymbolVol = ( coin, limit, currency ) => async dispatch => {
+export const dailySymbolVol = data => async dispatch => {
+
+    const { coin, limit, currency } = data;
 
     const url = `${cryptoURL}symbol/histoday?fsym=${coin}&tsym=${currency}&limit=${limit}`;
 
