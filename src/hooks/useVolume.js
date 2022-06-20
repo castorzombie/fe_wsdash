@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback }  from 'react';
+import React, { useEffect, useRef, useCallback }  from 'react';
 import { useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 
@@ -8,7 +8,7 @@ const VolumeWait = styled('span')(
     fontStyle: 'italic'
 }));
 
-const useVolume =  ( coin, quote ) => {
+const useVolume = coin => {
 
   const { fullVolume } = useSelector( state => state.ws );
 
@@ -16,10 +16,14 @@ const useVolume =  ( coin, quote ) => {
 
   const calcVolume = useCallback( () => {
 
-    return Math.round( fullVolume[coin.name].FULLVOLUME * 100 ) / 100 ;
+    let n = parseFloat( fullVolume[coin.name].FULLVOLUME ).toFixed(2);
+
+    let withCommas = n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    return withCommas ;
 
   },[ 
-    coin.name, 
+    coin, 
     fullVolume ]);
 
   
@@ -39,8 +43,11 @@ const useVolume =  ( coin, quote ) => {
 
   const CoinVolume = () => (
     <React.Fragment>
-      { volumeRef.current ? ` (${volumeRef.current}${quote})` :
-      <VolumeWait>{` (volume) `}</VolumeWait> }
+      <VolumeWait>
+      { volumeRef.current ? 
+      ` (${volumeRef.current})` :
+      ` (volume) ` }
+      </VolumeWait> 
     </React.Fragment>
   );
 

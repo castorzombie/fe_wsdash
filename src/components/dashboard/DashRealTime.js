@@ -19,6 +19,7 @@ const CoinDesc = styled('span')(
 const CoinIcon = styled(InfoIcon)`
   font-size: 14px;
   color: #1976d2;
+  margin: 0 0 -3px 3px;
 `;
 
 export default function DashRealTime({ coin }) {
@@ -29,7 +30,7 @@ export default function DashRealTime({ coin }) {
 
   const CoinPrice = usePrice( coin );
 
-  const CoinVolume = useVolume( coin, quote );
+  const CoinVolume = useVolume( coin );
 
   const { description, image, name } = coin;
 

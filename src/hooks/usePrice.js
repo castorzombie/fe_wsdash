@@ -20,7 +20,6 @@ const PriceWait = styled('span')(
     fontStyle: 'italic'
 }));
 
-
 const usePrice = coin => {
 
   const { quote } = useSelector( state => state.setting );
@@ -34,14 +33,18 @@ const usePrice = coin => {
 
   const calcPrice = useCallback( () => {
 
+    let n = parseFloat( trade[coin.name].P ).toFixed(2);
+
+    let withCommas = n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
     return {
       buy : trade[coin.name].F === "1" ? true : false,
-      value : Math.round( trade[coin.name].P * 100 ) / 100
+      value : withCommas
     }
 
   },[ 
     trade, 
-    coin.name ]);
+    coin ]);
 
 
   useEffect ( () => {
