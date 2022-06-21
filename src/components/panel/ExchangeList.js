@@ -7,7 +7,7 @@ import usePrevious from '../../hooks/usePrevious';
 import useHasChanged from '../../hooks/useHasChanged';
 import useSingleSelect from '../../hooks/useSingleSelect';
 
-const exchange_list = [ "Coinbase", "Kraken" ];
+const exchange_list = [ "Bitfinex", "Coinbase", "Gemini", "Kraken" ];
 
 const ExchangeList = ({
   changeSetting,

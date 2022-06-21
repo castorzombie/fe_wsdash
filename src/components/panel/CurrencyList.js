@@ -7,7 +7,7 @@ import usePrevious from '../../hooks/usePrevious';
 import useHasChanged from '../../hooks/useHasChanged';
 import useSingleSelect from '../../hooks/useSingleSelect';
 
-const currency_list = [ "EUR", "JPY", "USD" ];
+const currency_list = [ "EUR",  "USD", "CHF", "GBP", "JPY", "CAD"];
 
 const CurrencyList = ({
   changeSetting,
