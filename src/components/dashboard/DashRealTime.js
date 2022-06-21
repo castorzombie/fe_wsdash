@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import usePrice from '../../hooks/usePrice';
 import useVolume from '../../hooks/useVolume';
 import { styled } from '@mui/material/styles';
@@ -24,15 +23,15 @@ const CoinIcon = styled(InfoIcon)`
 
 export default function DashRealTime({ coin }) {
 
-  const { quote } = useSelector( state => state.setting );
+  const { description, image, name } = coin;
 
-  const [ volTip ] = useState(`How much ${quote} was paid in total for the volume of ${coin.description} traded`);
+  const [ volTip ] = useState(`24 hour volume aggregated across all markets and all exchanges in ${name}.`);
 
   const CoinPrice = usePrice( coin );
 
   const CoinVolume = useVolume( coin );
 
-  const { description, image, name } = coin;
+
 
   const subHeader = () => {
     return(

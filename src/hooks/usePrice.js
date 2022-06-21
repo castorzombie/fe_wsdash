@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback }  from 'react';
+import React, { useEffect, useState, useRef, useCallback }  from 'react';
 import { useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 
@@ -22,14 +22,18 @@ const PriceWait = styled('span')(
 
 const usePrice = coin => {
 
-  const { quote } = useSelector( state => state.setting );
+  const { quote, exchange } = useSelector( state => state.setting );
 
   const { trade } = useSelector( state => state.ws );
+
+  const [ streamReady, setStreamReady ] = useState( false );
 
   const priceRef = useRef({ 
     buy: true, 
     value: '' 
   });
+
+  const { buy, value } = priceRef.current;
 
   const calcPrice = useCallback( () => {
 
@@ -46,24 +50,31 @@ const usePrice = coin => {
     trade, 
     coin ]);
 
-
   useEffect ( () => {
-
     if( trade && trade[coin.name] ){
 
       priceRef.current = calcPrice();
 
+      const { TSYM, M } = trade[coin.name];
+
+      setStreamReady( 
+        TSYM === quote && 
+        M === exchange && 
+        value ? true : false );
+      
     }
   },[ 
     trade, 
-    coin, 
+    coin,
+    quote,
+    exchange,
+    value,
     calcPrice ]);
 
-  const { buy, value } = priceRef.current;
 
   const CoinPrice = () => (
       <React.Fragment>
-        { value ? 
+        { streamReady ? 
         <PriceBox >
           <PriceDiff 
             inc={ buy ? 'green' : 'red' }>
