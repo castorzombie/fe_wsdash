@@ -23,7 +23,7 @@ const CurrencyList = ({
   const prevQuote = usePrevious( setting.quote );
 
   const [ state, SingleSelect, isEvent ] = useSingleSelect( 
-    "Currency List",
+    "Currencies",
     defaultValue, 
     currency_list 
   );

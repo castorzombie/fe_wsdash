@@ -23,7 +23,7 @@ const ExchangeList = ({
   const prevExchange = usePrevious( setting.exchange );
 
   const [ state, SingleSelect, isEvent ] = useSingleSelect( 
-    "Exchange List",
+    "Exchanges",
     defaultValue, 
     exchange_list 
   );

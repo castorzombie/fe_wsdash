@@ -4,6 +4,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+const sxFormStyle = { 
+  m: 2, 
+  width: 300
+};
 
 const useSingleSelect = ( label, defaultValue, options ) => {
 
@@ -33,7 +37,7 @@ const useSingleSelect = ( label, defaultValue, options ) => {
     };
 
     const SingleSelect = () => (
-        <FormControl sx={{ m: 1, width: 300 }} >
+        <FormControl sx={ sxFormStyle } >
         <InputLabel id="single-select-label">{ label }</InputLabel>
         <Select
           labelId="single-select-label"

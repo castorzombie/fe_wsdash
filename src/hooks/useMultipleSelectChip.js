@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
+import { useTheme, styled } from '@mui/material/styles';
+import {
+  Box, 
+  OutlinedInput, 
+  InputLabel, 
+  MenuItem, 
+  FormControl, 
+  Select, 
+  Chip, 
+  Checkbox } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
 
@@ -15,30 +17,41 @@ const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
     style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+      maxHeight: ITEM_HEIGHT * 8.5 + ITEM_PADDING_TOP,
+      width: 250
     }
   }
 };
 
-const boxStyle = { 
+const ImgStyled = styled('img')( 
+  () => ({
+    width: '30px',
+    margin:'0 10px 0 0', 
+    display: 'inline'
+}));
+
+const sxBoxStyle = { 
   display: 'flex', 
   flexWrap: 'wrap', 
   gap: 0.5 
 };
 
-const imgStyle = {
-  width: '25px',
-  margin:'0 10px 0 0', 
-  display: 'inline'
+const sxFormStyle = { 
+  m: 2, 
+  width: 300
 };
+
+const LabelStyled = styled(InputLabel)(({ theme }) => ({
+  backgroundColor:'white', 
+  padding:'0 10px 0 0'
+}));
 
 function getStyles( name, state, theme ) {
   return {
     fontWeight:
       state.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+        : theme.typography.fontWeightMedium
   };
 };
 
@@ -89,14 +102,19 @@ const MultipleSelectChip = (
 
   };
 
+  const isChecked = el => {
+
+    const inDDBB = items.find( item => item.name === el.name );
+
+    return inDDBB || items.indexOf(el) > -1 ? true : false;
+
+  };
 
   const DropdownMultiSelect = () => (
-      <FormControl 
-        sx={{ m: 1, width: 300 }} >
-        <InputLabel 
-          id={ `input-label-${ label }` } >
-            { label }
-        </InputLabel>
+      <FormControl sx={ sxFormStyle } >
+        <LabelStyled 
+          id={ `input-label-${ label }` } >{ label }
+        </LabelStyled>
         <Select 
           labelId={ `label-${ label }` }
           id={ `multiple-chip-${ label }` }
@@ -110,18 +128,16 @@ const MultipleSelectChip = (
               label="Chip" 
             /> }
           renderValue={ selected => (
-            <Box sx={ boxStyle } >
+            <Box sx={ sxBoxStyle } >
               { selected.map( value => (
-                <Chip 
+                <Chip
                   key={ value.itemId }  
                   label={ value.name } 
                 />
               )) }
             </Box>
           ) }
-          MenuProps={ MenuProps }
-          //disabled={ !options.length }
-        >
+          MenuProps={ MenuProps } >
           { options.map( ( el, index ) => (
             <MenuItem
               key={ index }
@@ -129,11 +145,12 @@ const MultipleSelectChip = (
               name={ el.name }
               style={ getStyles( el, items, theme ) }
             >
-              <img 
+              <Checkbox 
+                checked={ 
+                  isChecked(el) } />
+              <ImgStyled
                 src={ el.image } 
-                alt={ el.name } 
-                style={ imgStyle } 
-              /> 
+                alt={ el.name } /> 
               { el.name } { el.description }
             </MenuItem>
           )) }
@@ -142,7 +159,6 @@ const MultipleSelectChip = (
   );
 
   return [ 
-    //items, 
     add, 
     remove, 
     DropdownMultiSelect, 

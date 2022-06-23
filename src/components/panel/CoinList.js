@@ -33,7 +33,7 @@ const CoinList = ({
             newSelected,
             delSelected,    
             TopListByMarketCap ] = useMultiSelectChip ( 
-                                    "Coin List", 
+                                    "Coins", 
                                     defaultCoins, 
                                     list );
     
