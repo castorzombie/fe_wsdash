@@ -64,7 +64,9 @@ const CoinList = ({
 
     useEffect( () => {
 
-        if( isFirst.current && exchange !== '' && quote !== '' ) {
+        if( isFirst.current &&
+            exchange !== '' && 
+            quote !== '' ) {
             isFirst.current = false;
             topListByCap( 20, 'EUR' )         
             //topListByCapMock()

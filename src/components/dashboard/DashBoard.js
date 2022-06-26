@@ -1,5 +1,5 @@
 import React, { useState,} from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { startLogout } from '../../actions/auth';
 
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
@@ -13,7 +13,8 @@ import {
   Typography,
   Divider,
   IconButton,
-  Grid  } from '@mui/material';
+  Grid, 
+  Avatar } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -29,6 +30,7 @@ const DashBar = styled( AppBar, {
   shouldForwardProp: prop => prop !== 'open',
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
+  backgroundColor: '#5c6bc0',
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -75,7 +77,10 @@ function DashboardContent() {
 
   const dispatch = useDispatch();
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState( true );
+
+  const { exchange, quote } = useSelector( state => state.setting );
+    
 
   const toggleDrawer = () => {
 
@@ -116,7 +121,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              { `${exchange} (${quote})` }
             </Typography>
             <IconButton
               color="inherit"
@@ -130,10 +135,16 @@ function DashboardContent() {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'flex-end',
+              justifyContent: 'space-between',
               px: [1],
             }}
           >
+            <Avatar sx={{
+              m: 1, 
+              bgcolor: '#8e99f3', 
+              fontSize:'.9rem',
+              marginLeft: '10px'
+             }}>WS</Avatar>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>

@@ -52,6 +52,15 @@ const useChart = chartData => {
       options={ 
         {
 
+          plotOptions: {
+            candlestick: {
+                color: '#0288d1',
+                upColor: '#4caf50',
+                lineColor: '#0288d1',
+                upLineColor: '#4caf50'
+            },
+          },
+
           chart: {
             events: {
               load() {
