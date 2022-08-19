@@ -67,6 +67,7 @@ const CoinList = ({
         if( isFirst.current &&
             exchange !== '' && 
             quote !== '' ) {
+            console.log("coinList 70")
             isFirst.current = false;
             topListByCap( 20, 'EUR' )         
             //topListByCapMock()
