@@ -8,15 +8,15 @@ export const types = {
     authStartStartTokenRenew: '[auth] Start token renew',
     authLogout: '[auth] Logout',
 
-    addSetting: '[dashboard] Add new setting',
-    updateSetting: '[dashboard] Update setting',
+    addSetting: '[setting] Add new setting',
+    updateSetting: '[setting] Update setting',
 
-    coinsLoaded : '[dashboard] Load selected coin list',
-    addCoin: '[dashboard] Add new coin to list',
-    deleteCoin: '[dashboard] Remove coin from list',
+    coinsLoaded : '[coins] Load selected coin list',
+    addCoin: '[coins] Add new coin to list',
+    deleteCoin: '[coins] Remove coin from list',
+    activeCoin: '[coins] set active coin',
 
-    historicalPair: '[dashboard] historical  pair coin data',
-
+    historicalPair: '[dashboard] historical pair coin data',
     wsTrade: '[dashboard] websoket trade events',
     wsFullVolume: '[dashboard] websoket Full Volume events',
     wsSubscribe: '[dashboard] Subscribe to channel',

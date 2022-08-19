@@ -24,6 +24,11 @@ const deleteCoin = id => ({
     payload: id
 });
 
+const activeCoin = name => ({
+    type: types.activeCoin,
+    payload: name
+});
+
 
 export const getSelectedCoins = uid => {
 
@@ -137,4 +142,17 @@ export const removeCoin = id => {
 
     }
 
-}
+};
+
+
+export const setActiveCoin = name => {
+
+    return dispatch => {
+
+        dispatch( 
+            activeCoin( name ) 
+        );
+
+    }
+
+};

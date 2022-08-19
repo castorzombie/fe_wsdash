@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewCoin } from './../actions/coins';
+import { addNewCoin, setActiveCoin } from './../actions/coins';
 import { connectCryptoEvents } from './../actions/websocket';
 
 export default function useAddCoin( newSelected ){
@@ -8,17 +8,25 @@ export default function useAddCoin( newSelected ){
     const dispatch = useDispatch();
 
     const { exchange, quote } = useSelector( state => state.setting );
+
+    const { activeCoin } = useSelector( state => state.coin );
     
     const [ add ] = useState('coin added');
 
     useEffect( () => {
 
-        if( newSelected ) {
+        if( newSelected && newSelected.name !== activeCoin ) {
 
             dispatch( 
                 addNewCoin( 
                     newSelected 
                 ) 
+            );
+
+            dispatch(
+                setActiveCoin(
+                    newSelected.name
+                )
             );
 
             dispatch(
@@ -34,7 +42,8 @@ export default function useAddCoin( newSelected ){
         }
 
     }, [ 
-        newSelected, 
+        newSelected,
+        activeCoin, 
         dispatch,
         exchange,
         quote ] );

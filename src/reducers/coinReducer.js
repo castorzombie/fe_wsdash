@@ -33,7 +33,7 @@ export const coinReducer = ( state = initialState, action ) => {
                 )
             }
         
-        case types.setActiveCoin:
+        case types.activeCoin:
             return {
                 ...state,
                 activeCoin: action.payload
