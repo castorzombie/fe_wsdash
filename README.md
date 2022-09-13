@@ -9,4 +9,4 @@ In the project directory, you can run:
 ### `npm start`
 
 
-![crypto dashboard multipe items](https://postimg.cc/Wqj16N0v)
+![crypto dashboard multipe items](https://i.postimg.cc/4yHHGndm/multidash.png)
