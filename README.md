@@ -1,5 +1,5 @@
 ## What is WSDASH?
-wsdash is a crypto currency responsive dashboard showing real time data and historical data based on user settings and it is written with MERN stak. 
+wsdash is a crypto currency responsive dashboard showing real time data and historical data based on user settings and it is written with MERN stack. 
 
 ### Front End
 - React 18
@@ -11,7 +11,7 @@ wsdash is a crypto currency responsive dashboard showing real time data and hist
 
 ### Back End
 - NodeJS
-- express
+- Express
 - Mongoose
 - MongoDB
 
