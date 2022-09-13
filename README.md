@@ -2,18 +2,18 @@
 wsdash is a crypto currency responsive dashboard showing real time data and historical data based on user settings and it is written with MERN stak. 
 
 ### Front End
-React 18
-Redux Toolkit
-Axios
-Material UI
-custom Hooks
-Highcharts
+- React 18
+- Redux Toolkit
+- Axios
+- Material UI
+- custom Hooks
+- Highcharts
 
 ### Back End
-NodeJS
-express
-Mongoose
-MongoDB
+- NodeJS
+- express
+- Mongoose
+- MongoDB
 
 ### Configs for local environment
 REACT_APP_API_URL=http://localhost:4000/api
