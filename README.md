@@ -15,6 +15,10 @@ wsdash is a crypto currency responsive dashboard showing real time data and hist
 - Mongoose
 - MongoDB
 
+### Demo
+https://wsdash.netlify.app/
+(Only one concurrent user allowed from cryptocompare stream service.) 
+
 ### Configs for local environment
 REACT_APP_API_URL=http://localhost:4000/api
 REACT_APP_CRYPTO_COMPARE_URL=https://www.cryptocompare.com
